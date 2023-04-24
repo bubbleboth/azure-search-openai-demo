@@ -43,7 +43,7 @@ openai.api_key = openai_token.token
 
 # Set up clients for Cognitive Search and Storage
 search_client = SearchClient(
-    endpoint=f"https://{AZURE_SEARCH_SERVICE}.search.windows.net",
+    endpoint=f"https://{AZURE_SEARCH_SERVICE}.search.windows.net?api-version=2021-04-30-Preview",
     index_name=AZURE_SEARCH_INDEX,
     credential=azure_credential)
 blob_client = BlobServiceClient(
