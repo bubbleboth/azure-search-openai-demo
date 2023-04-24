@@ -232,7 +232,7 @@ def create_sections(filename, page_map):
 
 def create_search_index():
     if args.verbose: print(f"Ensuring search index {args.index} exists")
-    index_client = SearchIndexClient(endpoint=f"https://{args.searchservice}.search.windows.net/",
+    index_client = SearchIndexClient(endpoint=f"https://{args.searchservice}.search.windows.net/?api-version=2021-04-30-Preview",
                                      credential=search_creds)
     if args.index not in index_client.list_index_names():
         index = SearchIndex(
@@ -257,7 +257,7 @@ def create_search_index():
 
 def index_sections(filename, sections):
     if args.verbose: print(f"Indexing sections from '{filename}' into search index '{args.index}'")
-    search_client = SearchClient(endpoint=f"https://{args.searchservice}.search.windows.net/",
+    search_client = SearchClient(endpoint=f"https://{args.searchservice}.search.windows.net/?api-version=2021-04-30-Preview",
                                     index_name=args.index,
                                     credential=search_creds)
     i = 0
@@ -278,7 +278,7 @@ def index_sections(filename, sections):
 
 def remove_from_index(filename):
     if args.verbose: print(f"Removing sections from '{filename or '<all>'}' from search index '{args.index}'")
-    search_client = SearchClient(endpoint=f"https://{args.searchservice}.search.windows.net/",
+    search_client = SearchClient(endpoint=f"https://{args.searchservice}.search.windows.net/?api-version=2021-04-30-Preview",
                                     index_name=args.index,
                                     credential=search_creds)
     while True:
